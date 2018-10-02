@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite thread-count="3" name="Failed suite [Suite]" parallel="tests">
+  <test name="test3(failed)" parallel="tests">
+    <parameter name="passwd" value="12345"/>
+    <parameter name="expected" value="用户名或密码不正确"/>
+    <parameter name="user" value="admin"/>
+    <classes>
+      <class name="com.yzc.mysystem.test.MyLoginFailTest">
+        <methods>
+          <include name="loginTest" invocation-numbers="0"/>
+        </methods>
+      </class> <!-- com.yzc.mysystem.test.MyLoginFailTest -->
+    </classes>
+  </test> <!-- test3(failed) -->
+  <test name="test2(failed)" parallel="tests">
+    <parameter name="passwd" value=""/>
+    <parameter name="expected" value="用户名或密码不正确"/>
+    <parameter name="user" value="admin"/>
+    <classes>
+      <class name="com.yzc.mysystem.test.MyLoginFailTest">
+        <methods>
+          <include name="loginTest" invocation-numbers="0"/>
+        </methods>
+      </class> <!-- com.yzc.mysystem.test.MyLoginFailTest -->
+    </classes>
+  </test> <!-- test2(failed) -->
+  <test name="test1(failed)" parallel="tests">
+    <parameter name="passwd" value="123456"/>
+    <parameter name="expected" value="您好"/>
+    <parameter name="user" value="admin"/>
+    <classes>
+      <class name="com.yzc.mysystem.test.MyLoginSuccessTest">
+        <methods>
+          <include name="loginTest" invocation-numbers="0"/>
+        </methods>
+      </class> <!-- com.yzc.mysystem.test.MyLoginSuccessTest -->
+    </classes>
+  </test> <!-- test1(failed) -->
+</suite> <!-- Failed suite [Suite] -->

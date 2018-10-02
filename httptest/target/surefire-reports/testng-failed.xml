@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite verbose="0" name="Failed suite [Command line suite]">
+  <test name="Command line test(failed)">
+    <classes>
+      <class name="day02.GroupTest">
+        <methods>
+          <include name="begin"/>
+          <include name="end"/>
+        </methods>
+      </class> <!-- day02.GroupTest -->
+      <class name="day02.OverTimeTest">
+        <methods>
+          <include name="f"/>
+        </methods>
+      </class> <!-- day02.OverTimeTest -->
+      <class name="day02.HelloTest">
+        <methods>
+          <include name="afterSuite"/>
+          <include name="beforeTest"/>
+          <include name="afterMethod"/>
+          <include name="afterTest"/>
+          <include name="beforeSuite"/>
+          <include name="afterClass"/>
+          <include name="beforeMethod"/>
+          <include name="beforeClass"/>
+        </methods>
+      </class> <!-- day02.HelloTest -->
+    </classes>
+  </test> <!-- Command line test(failed) -->
+</suite> <!-- Failed suite [Command line suite] -->

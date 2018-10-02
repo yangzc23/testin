@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<suite name="Suite" parallel="tests" thread-count="3">
+  <test name="test1">
+    <parameter name="user" value="admin" />
+    <parameter name="passwd" value="123456" />    
+    <parameter name="expected" value="您好" />
+    <classes>  	    
+	  <class name="com.yzc.mysystem.test.MyLoginSuccessTest"/> 		           
+    </classes>
+  </test>
+  <test name="test2">
+    <parameter name="user" value="admin" />
+    <parameter name="passwd" value="" />    
+    <parameter name="expected" value="用户名或密码不正确" />
+    <classes>  	    
+	  <class name="com.yzc.mysystem.test.MyLoginFailTest"/> 		           
+    </classes>
+  </test>   
+  <test name="test3">
+    <parameter name="user" value="admin" />
+    <parameter name="passwd" value="12345" />    
+    <parameter name="expected" value="用户名或密码不正确" />
+    <classes>  	    
+	  <class name="com.yzc.mysystem.test.MyLoginFailTest"/> 		           
+    </classes>
+  </test>     
+</suite> 
+
+
+

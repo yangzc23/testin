@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Basic usage</title>
+<meta charset="utf-8">
+<link href="css/examples-offline.css" rel="stylesheet">
+<link href="css/kendo.common.min.css" rel="stylesheet">
+<link href="css/kendo.rtl.min.css" rel="stylesheet">
+<link href="css/kendo.default.min.css" rel="stylesheet">
+<link href="css/kendo.default.mobile.min.css" rel="stylesheet">
+<script src="js/jquery.min.js"></script>
+<script src="js/jszip.min.js"></script>
+<script src="js/kendo.all.min.js"></script>
+<script src="js/console.js"></script>
+<style>
+#cap {
+      width: 242px;
+      height: 125px;
+      margin: 20px auto;
+     }
+</style>    
+<script>
+$(document).ready(function() {
+    var data = [
+        { text: "请选择", value: "" },                                
+        { text: "上海", value: "1" },
+        { text: "北京", value: "2" },
+        { text: "广州", value: "3" },
+        { text: "深圳", value: "4" },
+        { text: "扬州", value: "5" }                        
+    ];
+    // create DropDownList from input HTML element
+    $("#city").kendoDropDownList({
+        dataTextField: "text",
+        dataValueField: "text",
+        dataSource: data,
+        index: 0,
+        change: onChange
+    });
+
+    var city = $("#city").data("kendoDropDownList");
+    city.select(0);
+    function onChange() {
+        if($("#city").val()=="请选择"){
+        	$("#cap").html("");
+        	return;
+        }
+        $.ajax({url:"weather",
+        	type:"post",
+        	data:{city:$("#city").val()},
+        	success:function(result){
+            $("#cap").html("湿度："+result.data.shidu+"<br/>"+
+            		"pm25："+result.data.pm25+"<br/>"+
+            		"pm10："+result.data.pm10+"<br/>"+
+            		"空气质量："+result.data.quality+"<br/>"+
+            		"气温："+result.data.wendu+"&#176;C"+"<br/>"+
+            		"建议："+result.data.ganmao);
+        }});
+    };
+});        
+</script>    
+</head>
+<body>
+<a class="offline-button" href="index.html">Back</a>  
+<div id="example">
+<div id="cap-view" class="demo-section k-content">
+<h3><label for="city">请选择城市</label></h3>
+<div style="margin-top:15px;margin-bottom:30px;">
+<input id="city" value="1" style="width: 100%;" />            
+</div>
+<h3>天气情况如下：</h3>
+<div id="cap"></div>                   
+</div>
+</div>   
+</body>
+</html>

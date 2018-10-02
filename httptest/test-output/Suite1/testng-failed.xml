@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite name="Failed suite [Suite1]">
+  <test name="Test102(failed)">
+    <classes>
+      <class name="day02.HelloTest">
+        <methods>
+          <include name="afterSuite"/>
+          <include name="beforeTest"/>
+          <include name="afterMethod"/>
+          <include name="afterTest"/>
+          <include name="beforeSuite"/>
+          <include name="afterClass"/>
+          <include name="beforeMethod"/>
+          <include name="beforeClass"/>
+        </methods>
+      </class> <!-- day02.HelloTest -->
+      <class name="day02.OverTimeTest">
+        <methods>
+          <include name="f"/>
+        </methods>
+      </class> <!-- day02.OverTimeTest -->
+    </classes>
+  </test> <!-- Test102(failed) -->
+</suite> <!-- Failed suite [Suite1] -->

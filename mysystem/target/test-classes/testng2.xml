@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<suite name="Suite" parallel="classes" thread-count="3">
+  <test name="allTest">
+    <classes>  	    
+	  <class name="com.yzc.mysystem.test.RemoteFirefoxTest"/> 
+	  <class name="com.yzc.mysystem.test.RemoteChromeTest"/> 		           
+	  <class name="com.yzc.mysystem.test.RemoteInternetExplorerTest"/> 		           	  		           
+    </classes>
+  </test>   
+</suite> 
+
+
+
