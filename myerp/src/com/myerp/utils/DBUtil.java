@@ -3,29 +3,45 @@ package com.myerp.utils;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
+import java.util.Properties;
 
-/**
- * 管理数据库连接的工具类
- * 可以获取数据库的连接对象
- * 以及关闭数据库连接
- */
 public class DBUtil {
+	private static String driver;//数据库驱动名
+	private static String url;//数据库连接地址
+	private static String user;//数据库账号
+	private static String passwd;//数据库密码
+	
+	static{
+		//创建一个工具（用来加载属性配置文件）
+		Properties prop = new Properties();
+		try {
+			//加载数据库连接配置文件
+			prop.load(DBUtil.class.getClassLoader().getResourceAsStream("db.properties"));
+			//prop.load(new FileInputStream(new File("src/main/resources/db.properties")));
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		driver = prop.getProperty("Driver");//获取驱动名
+		url = prop.getProperty("URL");//获取连接地址
+		user = prop.getProperty("User");//获取账号
+		passwd = prop.getProperty("Passwd");//获取密码
+	}
+	
 	/**获取数据库连接*/
 	public static Connection getConnection() 
 		throws Exception{
 		Connection con = null;
 		try{
-			Class.forName(
-				"com.microsoft.sqlserver.jdbc.SQLServerDriver");
-			con = DriverManager.getConnection(
-				"jdbc:sqlserver://192.168.0.130:1433;databaseName=MYERP0612",
-				"sa","456789");
+			Class.forName(driver);
+			con = DriverManager.getConnection(url,user,passwd);
 		}catch(Exception e){
 			e.printStackTrace();
 			throw e;
 		}
 		return con;
 	}
+	
 	/**关闭数据库连接*/
 	public static void close(Connection con) throws SQLException{
 		if(con!=null){
@@ -38,7 +54,3 @@ public class DBUtil {
 		}
 	}
 }
-
-
-
-

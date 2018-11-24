@@ -1,13 +1,12 @@
 package com.myerp.handler;
 
 import java.io.IOException;
-import java.net.URLDecoder;
 
 import javax.servlet.ServletException;
-import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 /**
  * Servlet implementation class StudentServlet
@@ -19,13 +18,19 @@ public class StudentServlet extends HttpServlet {
 		//设置页面内容的编码格式 
 		resp.setContentType("text/html;charset=UTF-8");
 		//获取与该域相关的 Cookie 的数组
-        Cookie[] cookies = req.getCookies();
+        //Cookie[] cookies = req.getCookies();
         String userInfo = "";
         //
-        for(Cookie c:cookies){
+        HttpSession session = req.getSession();
+        //
+        userInfo = userInfo + session.getAttribute("user") + ",";
+        //
+        userInfo = userInfo + session.getAttribute("email");
+        //
+/*        for(Cookie c:cookies){
         	userInfo+=URLDecoder.decode(c.getValue(),"utf-8");
         	userInfo+=",";
-        }
+        }*/
 		String html = "<div style='text-align:right;'>"+
         "<span style='color:blue;'>"+userInfo+"</span></div>"+
 		"<h1>这是一个一级标题</h1>"+

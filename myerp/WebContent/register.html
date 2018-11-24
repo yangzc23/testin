@@ -3,12 +3,59 @@
 <head>
 <meta charset="UTF-8">
 <title>注册个人信息</title>
+<script type="text/javascript">
+/**
+ * 检查用户名是否合法
+ */
+function checkuser(username){
+	if(username==null||username==""){
+		document.getElementById("user_error").innerHTML="*用户名不能为空";
+		return false;
+	}else{
+		document.getElementById("user_error").innerHTML="";
+		return true;
+	}
+}
+
+/**
+ * 检查邮箱是否合法
+ */
+function checkemail(email){
+	reg = /^([a-z0-9_\.-]+)@([\da-z\.-]+)\.([a-z\.]{2,6})$/;
+	if(reg.test(email)){
+		document.getElementById("email_error").innerHTML="";
+		return true;
+	}else{
+		document.getElementById("email_error").innerHTML="*邮箱地址不正确";
+		return false;
+	}
+}
+
+/**
+ * 检查表单
+ */
+function checkall(){
+	//检查用户名是否合法
+	var userIsRight = checkuser(document.getElementById("user").value);
+	//检查邮箱是否合法
+	var emailIsRight = checkemail(document.getElementById("email").value);
+	if(userIsRight&&emailIsRight){
+		return true;
+	}else{
+		alert("输入的信息错误，注册失败");
+		return false;
+	}
+}
+
+</script>
 </head>
 <body>
-<form action="user/save" method="GET">
-用户名 ：<input type="text" name="user">
+<form id="myform" action="user/save" method="GET" onsubmit="return checkall();">
+用户名 ：
+<input type="text" name="user" id="user" 
+onblur="checkuser(this.value);"><span id="user_error" style="color:red;font-size:12px;"></span>
 <br />
-邮箱地址：<input type="text" name="email" /><br>
+邮箱地址：<input type="text" name="email" id="email" onblur="checkemail(this.value)" /><span id="email_error" style="color:red;font-size:12px;"></span><br>
 <input type="submit" value="提交" />
 </form>
 </body>
